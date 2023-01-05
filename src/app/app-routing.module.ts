@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DropdownComponent } from './dropdown/dropdown.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { AuthenticationGuard } from './authentication.guard'
+import { HomeUserComponent } from './views/home-user/home-user.component';
 
 
 
 const routes: Routes = [
-  {path:"dropdown", component: DropdownComponent },
-
+  { path: '', pathMatch: 'full', redirectTo: 'login'},
+  {path:'login', component: LoginFormComponent },
+  {path:'homeUser', component: HomeUserComponent, canActivate:[ AuthenticationGuard] },
 ];
 
 @NgModule({
