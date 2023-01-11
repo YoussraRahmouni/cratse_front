@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeUserComponent } from './views/home-user/home-user.component';
+import { CraComponent } from './components/cra/cra.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HomeUserComponent } from './views/home-user/home-user.component';
     DropdownComponent,
     NavbarComponent,
     LoginFormComponent,
-    HomeUserComponent
+    HomeUserComponent,
+    CraComponent
   ],
   imports: [
     BrowserModule,
