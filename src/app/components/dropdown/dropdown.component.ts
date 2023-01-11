@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-dropdown',
@@ -8,9 +9,10 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DropdownComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavbarService) { }
 
   ngOnInit(): void {
+    this.nav.show();
   }
 
 }

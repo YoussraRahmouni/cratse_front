@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login</title>
+</head>
+
+<body>
+  <div class="container center ">
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()" class="px-4 py-3">
+      <div class="form-group">
+        <label for="exampleDropdownFormEmail1">Email address</label>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls['email'].errors}">
+          <input formControlName="email" type="email" class="form-control" id="exampleDropdownFormEmail1"
+            placeholder="email@example.com">
+        </p>
+        <div *ngIf="isSubmitted && formControls['email'].errors" class="help-block">
+          <div *ngIf="formControls['email'].errors['required']">
+            <a color="red">L'email est requis</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleDropdownFormPassword1">Password</label>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls['password'].errors }">
+          <input formControlName="password" type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+        </p>
+        <div *ngIf="isSubmitted && formControls['password'].errors" class="help-block">
+          <div *ngIf="formControls['password'].errors['required']">
+            <a color="red">Mot de passe requis</a>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+  </div>
+</body>
+
+</html>
