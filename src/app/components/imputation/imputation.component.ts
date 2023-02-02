@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImputationService } from 'src/app/services/imputation.service';
 
 @Component({
   selector: 'app-imputation',
@@ -10,6 +11,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ImputationComponent implements OnInit {
 
   submitted: Boolean = false;
+
+  idProject: any;
+  dailyCharge: any;
+  date: any;
+
   form = new FormGroup({
     dailyChargeImputation: new FormControl('', [
       Validators.required,
@@ -21,7 +27,7 @@ export class ImputationComponent implements OnInit {
     return this.form.get('dailyChargeImputation');
   }
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, private imputationService: ImputationService) { }
 
   arg: any;
 
@@ -29,11 +35,27 @@ export class ImputationComponent implements OnInit {
   }
 
   submitForm(arg: any) {
+
     this.submitted = true;
+
     if (this.form.valid) {
-      console.log('dailyChargeImputation  ' + this.form.value.dailyChargeImputation);
-      console.log('date ' + arg.dateStr);
+
       console.log('projectId  ' + arg.resource.id);
+      this.idProject = arg.resource.id;
+
+      console.log('dailyChargeImputation  ' + this.form.value.dailyChargeImputation);
+      this.dailyCharge = this.form.value.dailyChargeImputation;
+
+      console.log('date ' + arg.dateStr);
+      this.date = arg.dateStr;
+      // Imputation service to call Post method 
+      this.imputationService.addImputation(this.idProject,this.dailyCharge,this.date).subscribe(
+        result => console.log('Imputation added successfully', result),
+        error => console.error('Error while adding imputation', error)
+        // take into consideration later that when adding the imputation it will not be updated in the view
+        // Handle that later 
+      );
+
       this.activeModal.close('Close click');
       // the POST api call should be handled here : call of the imputation service
     }

@@ -14,6 +14,8 @@ import { CraComponent } from './components/cra/cra.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ImputationComponent } from './components/imputation/imputation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListProjectsComponent } from './components/list-projects/list-projects.component';
+import { FormProjectComponent } from './components/form-project/form-project.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginFormComponent,
     HomeUserComponent,
     CraComponent,
-    ImputationComponent
+    ImputationComponent,
+    ListProjectsComponent,
+    FormProjectComponent
   ],
   imports: [
     BrowserModule,

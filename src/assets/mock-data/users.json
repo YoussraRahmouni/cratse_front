@@ -1,0 +1,18 @@
+[
+    {
+        "idUser": 1,
+        "firstName": "youssra",
+        "lastName": "rahmouni",
+        "email": "youssra@gmail.com",
+        "password": "youssra",
+        "role": "manager"
+    },
+    {
+        "idUser": 2,
+        "firstName": "manal",
+        "lastName": "dermich",
+        "email": "manal@gmail.com",
+        "password": "manal",
+        "role": "user"
+    }
+]

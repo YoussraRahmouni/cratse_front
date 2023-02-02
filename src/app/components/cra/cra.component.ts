@@ -6,6 +6,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImputationComponent } from '../imputation/imputation.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { Project } from 'src/app/models/project';
+import { ImputationService } from 'src/app/services/imputation.service';
+import { Imputation } from 'src/app/models/imputation';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Component({
@@ -16,9 +19,14 @@ import { Project } from 'src/app/models/project';
 export class CraComponent implements OnInit {
 
   //projectList:Project[] = [];
+  
+  email?: string;
 
 
-  constructor(private modalService: NgbModal, private projectService: ProjectService) { }
+  constructor(private modalService: NgbModal, 
+              private projectService: ProjectService, 
+              private imputationService: ImputationService, 
+              private authService: AuthenticationService) { }
 
   calendarOptions: CalendarOptions = {
     plugins: [ResourceTimelineView, interactionPlugin],
@@ -37,11 +45,11 @@ export class CraComponent implements OnInit {
       //alert('Clicked on: ' + info.dateStr + '\n' +'Resource ID: ' + info.resource?.id );
       
     },*/
-    events: [
-      { id: '1', resourceId: '3', start: '2023-01-01', end: '2023-01-01', title: 'event 1' },
-      { id: '2', resourceId: '4', start: '2023-02-01', end: '2023-02-01', title: 'event 2' },
-      { id: '3', resourceId: '5', start: '2023-03-01', end: '2023-03-01', title: 'event 3' }
-    ],
+    // events: [
+    //   { id: '1', resourceId: '3', start: '2023-01-01', end: '2023-01-01', title: 'event 1' },
+    //   { id: '2', resourceId: '4', start: '2023-02-01', end: '2023-02-01', title: 'event 2' },
+    //   { id: '3', resourceId: '5', start: '2023-03-01', end: '2023-03-01', title: 'event 3' }
+    // ],
     //resources: this.projectList,
     //[
     //   { id: 'a', title: 'Room A' },
@@ -59,6 +67,7 @@ export class CraComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.email = this.authService.getUserEmail();
     this.projectService.getAllProjects()
       .subscribe((data: Project[]) => {
         //console.log(data);
@@ -66,9 +75,20 @@ export class CraComponent implements OnInit {
           id: resource.idProject.toString(),
           title: resource.nameProject
         }));
-        //console.log(this.calendarOptions.resources);
       });
-    //console.log(this.projectList);
+      this.imputationService.getAllImputations()
+      .subscribe((data: Imputation[]) => {
+        //console.log(data);
+        this.calendarOptions.events = data.map(imputation => ({
+          id: imputation.idImputation.toString(),
+          resourceId:imputation.idProject.toString(),
+          start: imputation.dateImputation,
+          end: imputation.dateImputation,
+          title: imputation.dailyChargeImputation.toString(),
+        }));
+        //console.log(this.calendarOptions.events);
+      });
+      console.log(this.authService.getStatus());
   }
 
 }

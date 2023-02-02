@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavbarService } from '../services/navbar.service';
-import { AuthenticationService } from '../services/user/authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -30,9 +30,9 @@ export class LoginFormComponent implements OnInit {
   }
 
   logIn() {
-    console.log(this.loginForm.value);
+    //console.log(this.loginForm.value);
     this.isSubmitted = true;
-    console.log(this.loginForm.invalid);
+    //console.log(this.loginForm.invalid);
     if (this.loginForm.invalid) {
       return;
     }
