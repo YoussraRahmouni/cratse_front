@@ -13,6 +13,10 @@ export class ImputationService {
 
   constructor(private http: HttpClient) { }
 
+  getAllImputationsOfUser(idUser:any) {
+    //this.http.get<Imputation[]>(this.apiUrl+'imputations');
+    return this.http.get<Imputation[]>(this.imputationsUrl);
+  }
   getAllImputations() {
     //this.http.get<Imputation[]>(this.apiUrl+'imputations');
     return this.http.get<Imputation[]>(this.imputationsUrl);

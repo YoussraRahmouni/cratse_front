@@ -9,6 +9,8 @@ import { Project } from 'src/app/models/project';
 import { ImputationService } from 'src/app/services/imputation.service';
 import { Imputation } from 'src/app/models/imputation';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ActivatedRoute } from '@angular/router';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 
 @Component({
@@ -21,12 +23,14 @@ export class CraComponent implements OnInit {
   //projectList:Project[] = [];
   
   email?: string;
+  idUser?: any;
 
 
   constructor(private modalService: NgbModal, 
               private projectService: ProjectService, 
               private imputationService: ImputationService, 
-              private authService: AuthenticationService) { }
+              private authService: AuthenticationService,
+              private activatedRoute: ActivatedRoute,public nav : NavbarService) { }
 
   calendarOptions: CalendarOptions = {
     plugins: [ResourceTimelineView, interactionPlugin],
@@ -67,6 +71,14 @@ export class CraComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.nav.show();
+    console.log(this.activatedRoute.snapshot.routeConfig?.path);
+    if(this.activatedRoute.snapshot.routeConfig?.path == 'homeUser'){
+      this.idUser = localStorage.getItem('ID');
+    }
+    if(this.activatedRoute.snapshot.routeConfig?.path == 'users/cra/:id'){
+      this.idUser = this.activatedRoute.snapshot.paramMap.get('id');
+    }
     this.email = this.authService.getUserEmail();
     this.projectService.getAllProjects()
       .subscribe((data: Project[]) => {

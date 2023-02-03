@@ -16,6 +16,7 @@ import { ImputationComponent } from './components/imputation/imputation.componen
 import { HttpClientModule } from '@angular/common/http';
 import { ListProjectsComponent } from './components/list-projects/list-projects.component';
 import { FormProjectComponent } from './components/form-project/form-project.component';
+import { ListUsersComponent } from './components/list-users/list-users.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormProjectComponent } from './components/form-project/form-project.com
     CraComponent,
     ImputationComponent,
     ListProjectsComponent,
-    FormProjectComponent
+    FormProjectComponent,
+    ListUsersComponent
   ],
   imports: [
     BrowserModule,

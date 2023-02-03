@@ -7,6 +7,8 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="my-button-container d-flex justify-content-end">
+      <button *ngIf="updatedRole() == 'manager'" type="button" routerLink="/users" class="btn btn-primary ">Users</button>
+      <button *ngIf="updatedRole() == 'manager'" type="button" routerLink="/projects" class="btn btn-primary ">Projects</button>
       <button type="button" class="btn btn-primary " (click)="logOut()">LogOut</button>
     </div>
   </div>

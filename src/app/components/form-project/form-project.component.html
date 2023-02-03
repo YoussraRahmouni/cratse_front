@@ -1,1 +1,24 @@
-<p>form-project works!</p>
+<div class="modal-header">
+    <h5 class="modal-title">Form to add project </h5>
+    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <p> Project Name: </p>
+        <input formControlName="nameProject" name="nameProject" type="text" class="form-control"
+            placeholder="Project Name">
+        <p></p>
+        <p>Forecast Duration: </p>
+        <input formControlName="forecastDuration" name="forecastDuration" type="text" class="form-control"
+            placeholder="Forecast Duration ">
+        <p></p>
+        <p>Real Duration:</p>
+        <input formControlName="realDuration" name="realDuration" type="text" class="form-control"
+            placeholder="Real Duration">
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success" (click)="submitForm()">Submit</button>
+</div>

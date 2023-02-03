@@ -15,6 +15,7 @@ export class PermissionService {
   hasPermission(next: ActivatedRouteSnapshot): Observable<boolean> {
     return this.authService.isConnectedObs().pipe(map(res => {
       this.permissions = this.getPermissions();
+      console.log(next.data['permission']);
       return this.checkPermission(next.data['permission']);
     }));
   }
@@ -33,8 +34,8 @@ export class PermissionService {
     }
   }
 
-  checkPermission(permission: string): boolean {
+  checkPermission(permission: string[]): boolean {
     // Check if the user's permissions include the required permission.
-    return this.permissions.includes(permission);
+    return permission.includes(this.permissions);
   }
 }

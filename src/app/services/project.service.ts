@@ -16,4 +16,12 @@ export class ProjectService {
     //this.http.get<Project[]>(this.apiUrl+'projects');
     return this.http.get<Project[]>(this.projectsUrl);
   }
+  addProject(nameProject: any,forecastDuration: any,realDuration: any){
+    const body = {
+      'nameProject': nameProject,
+      'durationForecastProject': forecastDuration,
+      'durationRealProject':realDuration
+    }
+    return this.http.post<any>(this.projectsUrl,body);
+  }
 }
