@@ -36,7 +36,9 @@ export class LoginFormComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    
     this.authService.logIn(this.loginForm.value);
+    
     this.router.navigateByUrl('/homeUser');
   }
 

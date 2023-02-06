@@ -13,9 +13,9 @@ import { CraComponent } from './components/cra/cra.component';
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'login'},
   {path:'login', component: LoginFormComponent },
-  {path:'homeUser', component: HomeUserComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: ['user', 'manager'] } },
-  {path:'users', component: ListUsersComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: 'manager' } },
-  {path:'projects', component: ListProjectsComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: 'manager' } },
+  {path:'homeUser', component: HomeUserComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: ['User', 'Manager'] } },
+  {path:'users', component: ListUsersComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: 'Manager' } },
+  {path:'projects', component: ListProjectsComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: 'Manager' } },
   { path: 'users/cra/:id', component: CraComponent }
 ];
 

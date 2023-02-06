@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListProjectsComponent } from './components/list-projects/list-projects.component';
 import { FormProjectComponent } from './components/form-project/form-project.component';
 import { ListUsersComponent } from './components/list-users/list-users.component';
+import { FormUserComponent } from './components/form-user/form-user.component';
+import { ProjectComponent } from './components/project/project.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ListUsersComponent } from './components/list-users/list-users.component
     ImputationComponent,
     ListProjectsComponent,
     FormProjectComponent,
-    ListUsersComponent
+    ListUsersComponent,
+    FormUserComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,

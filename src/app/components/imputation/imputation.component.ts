@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Imputation } from 'src/app/models/imputation';
 import { ImputationService } from 'src/app/services/imputation.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class ImputationComponent implements OnInit {
   dailyCharge: any;
   date: any;
 
+  @Output() newImputation= new EventEmitter<Imputation>();
+
   form = new FormGroup({
     dailyChargeImputation: new FormControl('', [
       Validators.required,
@@ -27,7 +30,7 @@ export class ImputationComponent implements OnInit {
     return this.form.get('dailyChargeImputation');
   }
 
-  constructor(public activeModal: NgbActiveModal, private imputationService: ImputationService) { }
+  constructor(public activeModal: NgbActiveModal, private imputationService: ImputationService,) { }
 
   arg: any;
 
@@ -50,14 +53,16 @@ export class ImputationComponent implements OnInit {
       this.date = arg.dateStr;
       // Imputation service to call Post method 
       this.imputationService.addImputation(this.idProject,this.dailyCharge,this.date).subscribe(
-        result => console.log('Imputation added successfully', result),
-        error => console.error('Error while adding imputation', error)
+        // result => console.log('Imputation added successfully', result),
+        // error => console.error('Error while adding imputation', error),
+        (imputation) => {
+          this.newImputation.emit(imputation);
+          this.activeModal.close('Close click');
+        }
         // take into consideration later that when adding the imputation it will not be updated in the view
         // Handle that later 
       );
-
-      this.activeModal.close('Close click');
-      // the POST api call should be handled here : call of the imputation service
+      //this.activeModal.close('Close click');
     }
   }
 

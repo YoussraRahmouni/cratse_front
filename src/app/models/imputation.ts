@@ -5,7 +5,7 @@ export interface Imputation{
     idImputation: number;
     dateImputation: Date;
     dailyChargeImputation: number;
-    idProject: number;
-    //project: Project;
+    //idProject: number;
+    project: Project;
     //user: User;
 }

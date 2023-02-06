@@ -1,0 +1,56 @@
+<p>form-user works!</p>
+<div class="modal-header">
+    <h5 class="modal-title">Form to add project </h5>
+    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <p> First Name: </p>
+        <input formControlName="firstName" name="firstName" type="text" class="form-control" placeholder="First Name"
+            [ngClass]="{ 'is-invalid': submitted && form.controls.firstName.errors }">
+        <div *ngIf="submitted && form.controls.firstName.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.firstName.errors['required']">First name is required</div>
+        </div>
+        <p></p>
+        <p>Last Name: </p>
+        <input formControlName="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name"
+            [ngClass]="{ 'is-invalid': submitted && form.controls.lastName.errors }">
+        <div *ngIf="submitted && form.controls.lastName.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.lastName.errors['required']">Last Name is required</div>
+        </div>
+        <p></p>
+        <p>Email:</p>
+        <input formControlName="email" name="email" type="text" class="form-control" placeholder="Email"
+            [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors }">
+        <div *ngIf="submitted && form.controls.email.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.email.errors['required']">Email is required</div>
+            <div *ngIf="form.controls.email.errors['required']">Email is not valid</div>
+        </div>
+        <p>Password:</p>
+        <input formControlName="password" name="password" type="password" class="form-control" placeholder="Password"
+            [ngClass]="{ 'is-invalid': submitted && form.controls.password.errors }">
+        <div *ngIf="submitted && form.controls.password.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.password.errors['required']">Password is required</div>
+        </div>
+        <p>Job:</p>
+        <input formControlName="job" name="job" type="text" class="form-control" placeholder="job"
+            [ngClass]="{ 'is-invalid': submitted && form.controls.job.errors }">
+        <div *ngIf="submitted && form.controls.job.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.job.errors['required']">Password is required</div>
+        </div>
+        <p>Role:</p>
+        <select formControlName="role" class="form-control" name="role"
+            [ngClass]="{ 'is-invalid': submitted && form.controls.role.errors }">
+            <option value="3">User</option>
+            <option value="2">Manager</option>
+        </select>
+        <div *ngIf="submitted && form.controls.role.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.role.errors['required']">Role is required</div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success" (click)="submitForm()">Submit</button>
+</div>

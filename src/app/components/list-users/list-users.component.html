@@ -1,4 +1,7 @@
 <p>list-users works!</p>
+<div style="position: absolute; right: 0; margin: 20px;">
+    <button type="submit" class="btn btn-dark" (click)="addUser()">Add User</button>
+  </div>
 <div id='table-users'>
     <table class="table table-hover table-sm">
         <thead>
@@ -15,7 +18,7 @@
                 <th scope="row">{{ user.idUser }}</th>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName}}</td>
-                <td>{{ user.role }}</td>
+                <td>{{ user.role.labelRole }}</td>
                 <td>
                     <a routerLink="/users/cra/{{user.idUser}}">
                         cra

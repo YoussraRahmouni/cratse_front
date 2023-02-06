@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { ProjectService } from 'src/app/services/project.service';
 export class FormProjectComponent implements OnInit {
 
   submitted: Boolean = false;
+  @Output() newProject = new EventEmitter<Project>();
 
   form = new FormGroup({
     nameProject: new FormControl(''),
@@ -34,8 +36,11 @@ export class FormProjectComponent implements OnInit {
     console.log(this.form.value.nameProject);
     console.log(this.form.value.forecastDuration);
     console.log(this.form.value.realDuration);
-    this.projectService.addProject(this.form.value.nameProject,this.form.value.forecastDuration,this.form.value.realDuration);
-    this.activeModal.close('Close click');
+    this.projectService.addProject(this.form.value.nameProject,this.form.value.forecastDuration,this.form.value.realDuration)
+    .subscribe((project) => {
+      this.newProject.emit(project);
+      this.activeModal.close('Close click');
+    });
   }
 
 }

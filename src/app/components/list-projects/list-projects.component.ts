@@ -12,7 +12,7 @@ import { FormProjectComponent } from '../form-project/form-project.component';
 })
 export class ListProjectsComponent implements OnInit {
 
-  constructor(public nav : NavbarService, public projectService: ProjectService, private modalService: NgbModal,) { }
+  constructor(public nav : NavbarService, public projectService: ProjectService, private modalService: NgbModal) { }
   projectList: Project [] = [];
   ngOnInit(): void {
     this.nav.show();
@@ -22,6 +22,9 @@ export class ListProjectsComponent implements OnInit {
 
   addProject(){
     const modalRef = this.modalService.open(FormProjectComponent, { centered: true });
+    modalRef.componentInstance.newProject.subscribe((project: Project) => {
+      this.projectList.push(project);
+    });
   }
 
 }

@@ -2,28 +2,34 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Imputation } from '../models/imputation';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImputationService {
 
-  apiUrl = 'localhost:8080/users/idUser/projects/idProject/imputations/';
-  imputationsUrl = '../../assets/mock-data/imputations.json';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private baseService: BaseService) { }
 
+  API_URL = this.baseService.API_URL;
+  HTTP_OPTIONS = this.baseService.HTTP_OPTIONS
+
+  // Endpoint /users/{userId}/imputations
   getAllImputationsOfUser(idUser:any) {
-    //this.http.get<Imputation[]>(this.apiUrl+'imputations');
-    return this.http.get<Imputation[]>(this.imputationsUrl);
+    
+    return this.http.get<Imputation[]>(this.API_URL+'users/'+idUser+'/imputations',this.HTTP_OPTIONS);
   }
   getAllImputations() {
     //this.http.get<Imputation[]>(this.apiUrl+'imputations');
-    return this.http.get<Imputation[]>(this.imputationsUrl);
+    return this.http.get<Imputation[]>(this.API_URL);
   }
+  // endpoint users/{userId}/projects/{projectId}/imputations
   addImputation(idProject: any, dailyCharge: any, date: Date): Observable<Imputation> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = { dailyCharge, date };
-    return this.http.post<any>(this.apiUrl, body, { headers });
+    const body = { 
+      "dateImputation":date.toString(), 
+      "dailyChargeImputation":dailyCharge.toString()
+    };
+    return this.http.put<any>(this.API_URL+'users/'+localStorage.getItem('ID')+'/projects/'+idProject+'/imputations', body, this.HTTP_OPTIONS);
   }
 }
