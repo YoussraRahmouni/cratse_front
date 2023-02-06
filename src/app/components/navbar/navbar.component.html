@@ -1,16 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="nav.visible">
-  <a class="navbar-brand" routerLink="#">Cratse</a>
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg " *ngIf="nav.visible">
+  <a class="navbar-brand" routerLink="/homeUser">Cratse</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="#">Home</a>
-      </li>
-    </ul>
-    <button type="button" class="btn btn-primary " (click)="logOut()">LogOut</button>
+    <div class="my-button-container d-flex justify-content-end">
+      <button *ngIf="updatedRole() == 'Manager'" type="button" routerLink="/users" class="btn btn-primary ">Users</button>
+      <button *ngIf="updatedRole() == 'Manager'" type="button" routerLink="/projects" class="btn btn-primary ">Projects</button>
+      <button type="button" class="btn btn-primary " (click)="logOut()">LogOut</button>
+    </div>
   </div>
 </nav>

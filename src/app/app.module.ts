@@ -11,6 +11,14 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeUserComponent } from './views/home-user/home-user.component';
 import { CraComponent } from './components/cra/cra.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { ImputationComponent } from './components/imputation/imputation.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ListProjectsComponent } from './components/list-projects/list-projects.component';
+import { FormProjectComponent } from './components/form-project/form-project.component';
+import { ListUsersComponent } from './components/list-users/list-users.component';
+import { FormUserComponent } from './components/form-user/form-user.component';
+import { ProjectComponent } from './components/project/project.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +27,22 @@ import { CraComponent } from './components/cra/cra.component';
     NavbarComponent,
     LoginFormComponent,
     HomeUserComponent,
-    CraComponent
+    CraComponent,
+    ImputationComponent,
+    ListProjectsComponent,
+    FormProjectComponent,
+    ListUsersComponent,
+    FormUserComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

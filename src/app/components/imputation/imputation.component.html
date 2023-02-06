@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h5 class="modal-title">Modal title</h5>
+    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="submitForm(arg)">
+        <p name="dateImputation">Date: {{ arg.dateStr }}</p>
+        <p name="idProject">Resource: {{ arg.resource.id }}</p>
+        <input formControlName="dailyChargeImputation" name="dailyChargeImputation" type="text" class="form-control"
+            placeholder="Hours">
+        <div *ngIf="dailyChargeImputation?.invalid && dailyChargeImputation?.touched" class="alert alert-danger">
+            Invalid value, it must be 0, 0.25, 0.5, 0.75 or 1
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success" (click)="submitForm(arg)">Submit</button>
+</div>
