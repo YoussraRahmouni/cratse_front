@@ -30,14 +30,14 @@ export class AuthenticationService {
     this.http.post<any>(this.API_URL  + 'login', body, this.HTTP_OPTIONS)
       .subscribe((res: User) => {
         this.user = res;
-        this.setLocalStorageValues(userInfo.email, this.user.idUser, this.user.role.labelRole);
+        this.setLocalStorageValues(userInfo.email, this.user.idUser, this.user.role.labelRole, this.user.firstName);
         console.log(res);
 
       }, error => {
         console.log(error);
       });
   }
-  private setLocalStorageValues(email: string, id: number, role: string) {
+  private setLocalStorageValues(email: string, id: number, role: string, firstName:string) {
     localStorage.setItem('ACCESS_TOKEN', "access_token");
     this.status = true;
     // set status
@@ -49,6 +49,7 @@ export class AuthenticationService {
 
     this.email = email;
     localStorage.setItem('emailUser', this.email);
+    localStorage.setItem('firstName', firstName.toString());
   }
 
   public isConnected() {
