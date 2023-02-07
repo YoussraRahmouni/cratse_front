@@ -19,6 +19,9 @@ import { FormProjectComponent } from './components/form-project/form-project.com
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { ProjectComponent } from './components/project/project.component';
+import { ListUsersAdminComponent } from './components/list-users-admin/list-users-admin.component';
+import { ModalRoleComponent } from './components/modal-role/modal-role.component';
+import { ModalManagerComponent } from './components/modal-manager/modal-manager.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { ProjectComponent } from './components/project/project.component';
     FormProjectComponent,
     ListUsersComponent,
     FormUserComponent,
-    ProjectComponent
+    ProjectComponent,
+    ListUsersAdminComponent,
+    ModalRoleComponent,
+    ModalManagerComponent
   ],
   imports: [
     BrowserModule,

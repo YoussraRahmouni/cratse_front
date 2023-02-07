@@ -7,13 +7,15 @@ import { PermissionGuard } from './guards/permission.guard';
 import { ListProjectsComponent } from './components/list-projects/list-projects.component';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { CraComponent } from './components/cra/cra.component';
+import { ListUsersAdminComponent } from './components/list-users-admin/list-users-admin.component';
 
 
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'login'},
   {path:'login', component: LoginFormComponent },
-  {path:'homeUser', component: HomeUserComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: ['User', 'Manager'] } },
+  {path:'allUsers', component: ListUsersAdminComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: 'Admin' } },
+  {path:'homeUser', component: HomeUserComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: ['User', 'Manager', 'Admin'] } },
   {path:'users', component: ListUsersComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: 'Manager' } },
   {path:'projects', component: ListProjectsComponent, canActivate:[ AuthenticationGuard, PermissionGuard], data: { permission: 'Manager' } },
   { path: 'users/cra/:id', component: CraComponent }

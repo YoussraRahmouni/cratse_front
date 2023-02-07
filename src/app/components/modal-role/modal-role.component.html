@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h5 class="modal-title">Modify role</h5>
+    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" >
+        <p>Role:</p>
+        <select formControlName="role" class="form-control" name="role">
+            <option value="3;User">User</option>
+            <option value="2;Manager">Manager</option>
+        </select>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success" (click)="submitForm()">Submit</button>
+</div>
