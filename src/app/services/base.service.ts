@@ -9,6 +9,14 @@ const HTTP_OPTIONS = {
   }),
   withCredentials: true
 };
+const HTTP_OPTIONS_PDF = {
+  responseType: 'blob',
+  headers: new HttpHeaders({
+    'Content-Type': 'application/pdf',
+    'Access-Control-Allow-Origin': '*'
+  }),
+  withCredentials: true
+}
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +24,7 @@ const HTTP_OPTIONS = {
 export class BaseService {
   public API_URL = API_URL;
   public HTTP_OPTIONS = HTTP_OPTIONS;
+  public HTTP_OPTIONS_PDF = HTTP_OPTIONS_PDF;
 
   constructor() { }
 }
