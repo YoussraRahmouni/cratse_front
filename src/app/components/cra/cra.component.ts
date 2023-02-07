@@ -29,6 +29,8 @@ export class CraComponent implements OnInit {
   idUser?: any;
   idProject!: any;
 
+  firstName: string | null = '';
+
   constructor(private modalService: NgbModal,
     private projectService: ProjectService,
     private imputationService: ImputationService,
@@ -89,6 +91,7 @@ export class CraComponent implements OnInit {
       this.idUser = this.activatedRoute.snapshot.paramMap.get('id');
     }
     this.email = this.authService.getUserEmail();
+    this.firstName = localStorage.getItem('firstName');
     this.projectService.getProjectsOfUser(this.idUser)
       .subscribe((data) => {
         //console.log(data);
