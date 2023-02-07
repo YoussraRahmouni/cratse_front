@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import ResourceTimelineView from "@fullcalendar/resource-timeline"
 import interactionPlugin from '@fullcalendar/interaction';
@@ -12,6 +12,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { ProjectComponent } from '../project/project.component';
+import { FullCalendarComponent } from '@fullcalendar/angular';
+import { saveAs } from 'file-saver';
+
+
 
 @Component({
   selector: 'app-cra',
@@ -30,6 +34,9 @@ export class CraComponent implements OnInit {
     private imputationService: ImputationService,
     private authService: AuthenticationService,
     private activatedRoute: ActivatedRoute, public nav: NavbarService, private cdr: ChangeDetectorRef) { }
+
+  @ViewChild('calendar')
+  calendarComponent!: FullCalendarComponent;
 
   calendarOptions: CalendarOptions = {
     plugins: [ResourceTimelineView, interactionPlugin],
@@ -81,7 +88,6 @@ export class CraComponent implements OnInit {
     if (this.activatedRoute.snapshot.routeConfig?.path == 'users/cra/:id') {
       this.idUser = this.activatedRoute.snapshot.paramMap.get('id');
     }
-
     this.email = this.authService.getUserEmail();
     this.projectService.getProjectsOfUser(this.idUser)
       .subscribe((data) => {
@@ -131,7 +137,7 @@ export class CraComponent implements OnInit {
     const newEvent = { id: imputation.idImputation.toString(),resourceId: imputation.project.idProject.toString(),start: imputation.dateImputation,end: imputation.dateImputation, title: imputation.dailyChargeImputation.toString() };
     const eventsArray = Array.isArray(this.calendarOptions.events) ? this.calendarOptions.events : [];
     const eventsCopy = [...eventsArray];
-    //Delete the old imputation from the events list because by default events doesn't ensure unique id
+    // Delete the old imputation from the events list because by default events doesn't ensure unique id
     eventsCopy.forEach((element,index) => {
       if(element.id == imputation.idImputation.toString()) eventsCopy.splice(index,1);
     });
@@ -142,8 +148,18 @@ export class CraComponent implements OnInit {
   }
 
   exportCra(){
-
+    let calendarApi = this.calendarComponent.getApi();
+    let month = calendarApi.getDate().getMonth()+1;
+    let year = calendarApi.getDate().getFullYear();
+    console.log("Year: " + year + " Month: " + month);
+    this.imputationService.exportCra(this.idUser,month,year).subscribe(res => {
+      console.log(res);
+      const file = new Blob([res], { type: 'application/pdf' });
+      saveAs(file, year+'-'+month+'.pdf');
+    });
+  
   }
 
 
 }
+
