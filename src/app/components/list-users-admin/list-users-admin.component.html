@@ -1,0 +1,28 @@
+<div id='table-users-admin'>
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">User Id</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Role</th>
+                <th scope="col">Manager</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <th scope="row">{{ user.idUser }}</th>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName}}</td>
+                <td>{{ user.role.labelRole }}</td>
+                <td *ngIf="user.manager !== null" >{{ user.manager.lastName}}</td>
+                <td *ngIf="user.manager == null" > No manager</td>
+                <td>
+                    <button style="margin-right: 10px; margin-left: 10px;" type="submit" class="btn btn-dark" (click)="changeRole(user.idUser)">Change Role</button>
+                    <button  type="submit" class="btn btn-dark" (click)="changeManager( user.idUser)">Change Manager</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,11 @@
+<div style="position: absolute; left: 35%; margin-top: 20px; margin-bottom: 50px;">
+    <h4>Welcome to your Cra: {{firstName}}</h4>
+</div>
+<div style="position: absolute; right: 0; margin: 20px;margin-top: 20px;">
+    <button type="submit" class="btn btn-dark" (click)="exportCra()">Export CRA</button>
+    <button style=" margin-left: 20px;" type="submit" class="btn btn-dark" (click)="addProject()">Add Project</button>
+</div>
+
+<div id='calendar'>
+    <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+</div>

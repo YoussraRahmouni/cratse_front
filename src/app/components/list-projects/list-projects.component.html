@@ -1,0 +1,23 @@
+<div style="position: absolute; right: 0; margin: 20px;">
+  <button type="submit" class="btn btn-dark" (click)="addProject()">Add Project</button>
+</div>
+<div id='table-projects'>
+<table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Project Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Forecast Duration</th>
+        <th scope="col">Real Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let project of projectList">  
+        <th scope="row">{{ project.idProject }}</th>
+        <td>{{ project.nameProject }}</td>
+        <td>{{ project.durationForecastProject }}</td>
+        <td>{{ project.durationRealProject }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

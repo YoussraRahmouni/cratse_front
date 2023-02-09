@@ -1,0 +1,14 @@
+[
+    {
+        "idImputation": 1,
+        "dateImputation": "2023-02-01",
+        "dailyChargeImputation": 0.5,
+        "idProject": 3
+    },
+    {
+        "idImputation": 2,
+        "dateImputation": "2023-02-03",
+        "dailyChargeImputation": 0.25,
+        "idProject": 4
+    }
+]

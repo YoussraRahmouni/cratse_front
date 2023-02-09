@@ -1,0 +1,16 @@
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg " *ngIf="nav.visible">
+  <a class="navbar-brand" routerLink="/homeUser">Cratse</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="my-button-container d-flex justify-content-end">
+      <button *ngIf="updatedRole() == 'Admin'" type="button" routerLink="/allUsers" class="btn btn-primary ">All users</button>
+      <button *ngIf="updatedRole() == 'Manager'" type="button" routerLink="/users" class="btn btn-primary ">Managed users</button>
+      <button *ngIf="updatedRole() == 'Manager'" type="button" routerLink="/projects" class="btn btn-primary ">Projects</button>
+      <button type="button" class="btn btn-primary " (click)="logOut()">LogOut</button>
+    </div>
+  </div>
+</nav>
